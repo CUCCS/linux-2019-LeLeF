@@ -3,7 +3,7 @@
 - [x] 定制一个普通用户名和默认密码
 - [x] 安装过程禁止自动联网更新软件包
 - [x] 定制安装OpenSSH Server
-- [x] PuTTy免密登陆
+- [x] PuTTy免密登录
 ## 实验环境
 * VirtualBox 
   * ubuntu 18.04.1 server
@@ -15,7 +15,7 @@
 ## 实验过程
 ### 网络配置
 * 添加并启用所有网卡，Host-Only网卡动态分配地址
-```
+```bash
 # 查看所有网卡
 ifconfig -a
 
@@ -26,7 +26,7 @@ sudo ifconfig enp0s8 up
 
 ![](netcfg.png)
 
-```
+```bash
 # 修改配置文件
 sudo vi /etc/netplan/01-netcfg.yaml
 
@@ -41,7 +41,7 @@ sudo dhclient enp0s8
 ### 自动安装镜像定制
 * 在server虚拟机上安装 openssh-server
 
-```
+```bash
 # 更新源
 sudo apt update
 
@@ -63,7 +63,7 @@ sudo /etc/init.d/ssh start
 ![](psftp.png)
 
 * 根据实验指导进行定制镜像的制作
-```
+```bash
 # 在当前用户目录下创建一个用于挂载iso镜像文件的目录
 mkdir loopdir
 
@@ -87,7 +87,7 @@ sudo umount loopdir
 ```
 ![](make01.png)
 
-```
+```bash
 # 进入目标工作目录
 cd cd/
 
@@ -106,7 +106,7 @@ label autoinstall
 ```
 ![](make02.png)
 
-```
+```bash
 # 修改配置缩短超时等待时间
 # timeout 10
 sudo vi isolinux/isolinux.cfg
@@ -115,7 +115,7 @@ sudo vi isolinux/isolinux.cfg
 
 * 下载已经定制好的ubuntu-server-autoinstall.seed
 
-```
+```bash
 # 移动到指定目录下
 sudo mv ubuntu-server-autoinstall.seed ~/cd/preseed/
 
@@ -125,7 +125,7 @@ sudo mv /tmp/md5sum.txt md5sum.txt
 ```
 ![](make04.png)
 
-```
+```bash
 # 无 mkisofs 命令（提示安装genisoimage）
 mkisofs --help
 
@@ -145,7 +145,7 @@ mkisofs -r -V "Custom Ubuntu Install CD" \
             -o $IMAGE $BUILD
 ```
 * 镜像制作完成，使用psftp传至宿主机
-```
+```bash
 # 设置Windows本地路径
 lcd E:/
 
@@ -158,18 +158,18 @@ get custom.iso
 
 ![](video.gif)
 
-* 安装完成
+* 安装完成([完整安装视频戳这里](https://www.bilibili.com/video/av46326809))
 
 ![](ok.png)
 
-### PuTTy免密登陆
+### PuTTy免密登录
 * 打开PUTTYGEN.EXE，点击```Generate```生成公私钥。
 
 ![](key.png)
 
 * 存储私钥，复制公钥
 * 进入虚拟机，在根目录下创建```.ssh```文件夹，将刚刚生成的公钥写入该文件夹下的```authorized_keys```
-```
+```bash
 # 创建目录
 mkdir .ssh
 cd .ssh
@@ -188,11 +188,11 @@ echo 'public key' > authorized_keys
 
 ![](prikey.png)
 
-* 'Session'输入虚拟机的IP地址，将此连接存储，下次可直接免密登陆
+* 'Session'输入虚拟机的IP地址，将此连接存储，下次可直接免密登录
 
 ![](log.png)
 
-* 成功免密登陆
+* 成功免密登录
 
 ![](free.png)
 
