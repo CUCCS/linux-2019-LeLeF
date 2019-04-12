@@ -18,12 +18,20 @@
 ```bash
 # 对jpeg格式图片进行图片质量压缩
 bash image.sh -i test.jpg -o output.jpg -q [size]
+# e.g. bash image.sh -i test.jpg -o qoutput.jpg -q 50
+```
+![](qcompress.png)
 
+```bash
 # 对jpeg/png/svg格式图片在保持原始宽高比的前提下压缩分辨率
 bash image.sh -i test.jpg -o output.jpg -r [size]
+# e.g. bash image.sh -i test.jpg -o output.jpg -r 25
+```
+![](rcompress.png)
 
+```bash
 # 对图片批量添加自定义文本水印
-bash image.sh -i test.jpg -o output.jpg -w 'text'
+bash image.sh -i test.jpg -o woutput.jpg -w 'text'
 ```
 ![](watermark.png)
 
@@ -31,18 +39,17 @@ bash image.sh -i test.jpg -o output.jpg -w 'text'
 
 ```bash
 # 批量重命名（统一添加文件名前缀或后缀，不影响原始文件扩展名）
-支持将png/svg图片统一转换为jpg格式图片
 # 加前缀
-bash image.sh -i test.jpg -o output.jpg -p test
+bash image.sh -i test.jpg -p test
 # 加后缀
-bash image.sh -i test.jpg -o output.jpg -s jpg
+bash image.sh -i test.jpg -s jpg
   
 ```
 ![](prefix.png)
 
 ```bash
 # 支持将png/svg图片统一转换为jpg格式图片
-bash image.sh -t -i test.svg -o output.jpg
+bash image.sh -t -i test.png -o trans.jpg
 ```
 
 ## 任务二（1）
@@ -103,6 +110,7 @@ bash text_weblog.sh -f
 ```bash
 # 给定URL输出TOP 100访问来源主机
 bash text_weblog.sh -u <url>
+# e.g. bash text_weblog.sh -u /whats-new.html
 ```
 ![](weblog-u.png)   
 

@@ -4,6 +4,9 @@ language: sh
 
 before_install:
     - sudo apt-get update -q
+	- sudo apt install p7zip-full
+	- wget http://sec.cuc.edu.cn/huangwei/course/LinuxSysAdmin/exp/chap0x04/web_log.tsv.7z
+    - 7z x web_log.tsv.7z -o/chap0x04shell
     - export scversion="stable" # or "v0.4.7", or "latest"
     - wget "https://storage.googleapis.com/shellcheck/shellcheck-${scversion}.linux.x86_64.tar.xz"
     - tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
@@ -12,9 +15,19 @@ before_install:
 
 script:
   - bash test.sh
-  - bash chap0x04shell/image.sh
+  - bash chap0x04shell/image.sh -h
+  - bash chap0x04shell/image.sh -i test.jpg -o output.jpg -q 50
+  - bash chap0x04shell/image.sh -i test.jpg -o output.jpg -r 25
+  - bash chap0x04shell/image.sh -i test.jpg -o woutput.jpg -w 'text'
+  - bash chap0x04shell/image.sh -i test.png -o trans.jpg
   - bash chap0x04shell/text_worldcup.sh
-  - bash chap0x04shell/text_weblog.sh
+  - bash chap0x04shell/text_weblog.sh -h
+  - bash chap0x04shell/text_weblog.sh -s
+  - bash chap0x04shell/text_weblog.sh -i
+  - bash chap0x04shell/text_weblog.sh -c
+  - bash chap0x04shell/text_weblog.sh -r
+  - bash chap0x04shell/text_weblog.sh -f
+  - bash chap0x04shell/text_weblog.sh -u /whats-new.html
 
 after_script:
   - /usr/bin/shellcheck test.sh
