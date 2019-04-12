@@ -15,19 +15,20 @@ before_install:
 
 script:
   - bash test.sh
-  - bash chap0x04shell/image.sh -h
-  - bash chap0x04shell/image.sh -i test.jpg -o output.jpg -q 50
-  - bash chap0x04shell/image.sh -i test.jpg -o output.jpg -r 25
-  - bash chap0x04shell/image.sh -i test.jpg -o woutput.jpg -w 'text'
-  - bash chap0x04shell/image.sh -i test.png -o trans.jpg
-  - bash chap0x04shell/text_worldcup.sh
-  - bash chap0x04shell/text_weblog.sh -h
-  - bash chap0x04shell/text_weblog.sh -s
-  - bash chap0x04shell/text_weblog.sh -i
-  - bash chap0x04shell/text_weblog.sh -c
-  - bash chap0x04shell/text_weblog.sh -r
-  - bash chap0x04shell/text_weblog.sh -f
-  - bash chap0x04shell/text_weblog.sh -u /whats-new.html
+  - cd chap0x04shell
+  - bash image.sh -h
+  - bash image.sh -i test.jpg -o output.jpg -q 50
+  - bash image.sh -i test.jpg -o output.jpg -r 25
+  - bash image.sh -i test.jpg -o woutput.jpg -w 'text'
+  - bash image.sh -i test.png -o trans.jpg
+  - bash text_worldcup.sh
+  - bash text_weblog.sh -h
+  - bash text_weblog.sh -s
+  - bash text_weblog.sh -i
+  - bash text_weblog.sh -c
+  - bash text_weblog.sh -r
+  - bash text_weblog.sh -f
+  - bash text_weblog.sh -u /whats-new.html
 
 after_script:
   - /usr/bin/shellcheck test.sh
