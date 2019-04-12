@@ -9,12 +9,30 @@ before_install:
     - tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
     - sudo cp shellcheck-"${scversion}"/shellcheck /usr/bin/
     - /usr/bin/shellcheck --version
+    - sudo apt install p7zip-full
+    - wget http://sec.cuc.edu.cn/huangwei/course/LinuxSysAdmin/exp/chap0x04/web_log.tsv.7z
+    - 7z x -ochap0x04shell web_log.tsv.7z  
 
 script:
   - bash test.sh
+  - cd chap0x04shell
+  - bash image.sh -h
+  - bash image.sh -i test.jpg -o output.jpg -q 50
+  - bash image.sh -i test.jpg -o output.jpg -r 25
+  - bash image.sh -i test.jpg -o woutput.jpg -w 'text'
+  - bash image.sh -i test.png -o trans.jpg
+  - bash text_worldcup.sh
+  - bash text_weblog.sh -h
+  - bash text_weblog.sh -s
+  - bash text_weblog.sh -i
+  - bash text_weblog.sh -c
+  - bash text_weblog.sh -r
+  - bash text_weblog.sh -f
+  - bash text_weblog.sh -u /whats-new.html
 
 after_script:
   - /usr/bin/shellcheck test.sh
+  - /usr/bin/shellcheck *.sh
 
 after_failure:
   - id
