@@ -156,7 +156,7 @@ sudo /opt/verynginx/openresty/nginx/sbin/nginx
 ```
 * 安装完成
 
-![verynginx.png]
+![](verynginx.png)
 
 
 
